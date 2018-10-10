@@ -29,6 +29,7 @@ public class WebSocketConfiguration implements WebSocketConfigurer  {
 	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
 
 		registry.addHandler(myMessageHandler(), "/voltageapi").setAllowedOrigins("*");
+		registry.addHandler(myMessageHandler(), "/currentapi").setAllowedOrigins("*");
 	}
 
 }
