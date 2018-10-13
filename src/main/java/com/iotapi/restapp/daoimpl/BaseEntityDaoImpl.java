@@ -1,5 +1,9 @@
 package com.iotapi.restapp.daoimpl;
 
+import java.util.List;
+
+import javax.persistence.Query;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +28,18 @@ public class BaseEntityDaoImpl implements BaseEntityDao {
 		session.persist(entity);
 		session.getTransaction().commit();
 		session.close();
+	}
+
+
+	@Override
+	public List<BaseEntity> getAllValues() {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		Query query= session.createQuery("from BaseEntity");
+		List<BaseEntity> list = query.getResultList();
+		session.getTransaction().commit();
+		session.close();
+		return list;
 	}
 
 	

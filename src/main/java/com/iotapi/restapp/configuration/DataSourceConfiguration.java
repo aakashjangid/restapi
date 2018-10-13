@@ -24,6 +24,8 @@ import com.iotapi.restapp.model.BaseEntity;
 @ComponentScan(basePackages = "com.iotapi")
 public class DataSourceConfiguration {
 
+	
+	
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
@@ -75,12 +77,12 @@ public class DataSourceConfiguration {
 	public DriverManagerDataSource dataSource() throws SQLException {
 
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		/*
-		 * dataSource.setUrl(environment.getProperty("jdbc.url"));
-		 * dataSource.setUsername(environment.getProperty("jdbc.username"));
-		 * dataSource.setPassword(environment.getProperty("jdbc.password"));
-		 * dataSource.setDriverClassName(environment.getProperty("jdbc.drivername"));
-		 */
+		
+//		 dataSource.setUrl("jdbc:mysql://localhost:3306/restful_api?useSSL=false");
+//		  dataSource.setUsername("root");
+//		  dataSource.setPassword("root1234");
+//		  dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+//		 
 
 		/*try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -88,18 +90,13 @@ public class DataSourceConfiguration {
 			e.printStackTrace();
 		}*/
 
-		dataSource.setUrl("jdbc:mysql://" + System.getProperty("RDS_HOSTNAME") + ":" + System.getProperty("RDS_PORT")
-				+ "/" + System.getProperty("RDS_DB_NAME")+"?useSSL=false");
-		System.out.println("--------------------------"+System.getProperty("RDS_USERNAME"));
-		System.out.println("--------------------------"+System.getProperty("RDS_PASSWORD"));
-		System.out.println("--------------------------"+System.getProperty("RDS_HOSTNAME"));
-		System.out.println("--------------------------"+System.getProperty("RDS_PORT"));
-		System.out.println("--------------------------"+System.getProperty("RDS_DB_NAME"));
-		System.out.println("+++++"+System.getProperty("RDS_USERNAME"));
-		dataSource.setUsername(System.getProperty("RDS_USERNAME"));
-		dataSource.setPassword(System.getProperty("RDS_PASSWORD"));
+		dataSource.setUrl("jdbc:mysql://" + System.getenv("RDS_HOSTNAME") + ":" + System.getenv("RDS_PORT")
+				+ "/" + System.getenv("RDS_DB_NAME")+"?useSSL=false");
+		
+		
+		dataSource.setUsername(System.getenv("RDS_USERNAME"));
+		dataSource.setPassword(System.getenv("RDS_PASSWORD"));
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		System.out.println(dataSource.getConnection());
 		return dataSource;
 
 	}

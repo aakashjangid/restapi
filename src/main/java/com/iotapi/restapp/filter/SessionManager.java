@@ -33,8 +33,8 @@ import io.jsonwebtoken.Jwts;
  * @Order is used to define sort order for components annotated with this
  *        annotation
  */
-@Component
-@Order(2)
+/*@Component
+@Order(2)*/
 public class SessionManager extends OncePerRequestFilter {
 
 	/**
@@ -80,7 +80,8 @@ public class SessionManager extends OncePerRequestFilter {
 
 		// no need to check Authorization Header for login or register request
 		if (/*found || */ requestedpath.equals("/customer/authenticate") || requestedpath.equals("/customer/register")
-				|| httpRequest.getMethod().equalsIgnoreCase("options") || requestedpath.contains("inputs")) {
+				|| requestedpath.contains("voltageapi") || requestedpath.contains("currentapi") || httpRequest.getMethod().equalsIgnoreCase("options")
+				|| requestedpath.contains("inputs") || requestedpath.contains("sampling")) {
 
 			// RequestReaders cannot be applied multiple times on a single
 			// request

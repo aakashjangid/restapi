@@ -1,6 +1,7 @@
 package com.iotapi.restapp.serviceimpl;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.Executors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,12 @@ public class BaseEntityServiceImpl implements BaseEntityService {
 		       entityDao.insertData(entity);
 		    }
 		});
+		
+	}
+
+	@Override
+	public List<BaseEntity> getAllValues() {
+		return entityDao.getAllValues();
 		
 	}
 

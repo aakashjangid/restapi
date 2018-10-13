@@ -32,7 +32,7 @@ public class MainRunner {
 	}
 	*/
 	
-	public void sendPostRequest(String requestUrl, String payload) {
+	public void sendPostRequest(String requestUrl) {
 	    try {
 	        URL url = new URL(requestUrl);
 	        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -40,11 +40,10 @@ public class MainRunner {
 	        connection.setDoInput(true);
 	        connection.setDoOutput(true);
 	        connection.setRequestMethod("POST");
-	        connection.setRequestProperty("Accept", "application/json");
-	        connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+//	        connection.setRequestProperty("Accept", "application/json");
+//	        connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
 	        OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream(), "UTF-8");
-	        writer.write(payload);
-	        writer.close();
+	        
 	        connection.getInputStream();
 	    } catch (Exception e) {
 	            throw new RuntimeException(e.getMessage());

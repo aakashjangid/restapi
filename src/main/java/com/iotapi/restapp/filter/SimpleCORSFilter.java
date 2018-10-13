@@ -39,6 +39,7 @@ public class SimpleCORSFilter implements Filter {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) res;
 		
+		System.out.println("///////////////////////////////////"+request.getAttribute("voltage"));
 		
 		System.out.println("-------+++++++--------"+request.getRequestURL());
 		System.out.println("-------+++++++--------"+request.getContentType());
